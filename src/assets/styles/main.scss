@@ -1,0 +1,68 @@
+@import "./variables";
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*:focus {
+  outline: none;
+}
+body {
+  // background-image: url(../4k-ultra-hd-background-nebula-sparkles-shine-dark-abstractio.jpg);
+  background-color: rgb(17, 17, 17);
+  color: #fff;
+}
+ul {
+  list-style: none;
+}
+
+input,
+textarea {
+  width: 100%;
+  font-size: 20px;
+  display: block;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: inherit;
+  color: #fff;
+  border: 2px solid $base;
+  resize: none;
+
+  &:hover {
+    box-shadow: 0 0 5px 0 $base;
+  }
+
+  &:focus {
+    border-color: $base;
+    box-shadow: 0 0 10px 0 $base;
+  }
+}
+
+.main-btn {
+  font-size: 20px;
+  background-color: $base;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 10px 0 $base;
+    transition: box-shadow .1s ease-in;
+
+  }
+
+  &:active {
+    background-color: darken($base, 5%);
+  }
+  &.cancel {
+    background-color: #11613d;
+    &:hover {
+      box-shadow: 0 0 10px 0 #11613d;
+    }
+    &:active {
+      background-color: #0e5334;
+    }
+  }
+}
