@@ -15,7 +15,11 @@
 
     <AddNewTodo :hidden="hidden" @closeModal="closeModal" />
 
-    <TodoList :filteredTasks="filteredTasks" @deleteItem="deleteItem" />
+    <TodoList
+      :filteredTasks="filteredTasks"
+      @deleteItem="deleteItem"
+      @checkItem="checkItem"
+    />
   </div>
 </template>
 
@@ -36,7 +40,7 @@ export default {
           id: 1,
           title: "Vue",
           text: "Learn vue",
-          completed: false
+          completed: true
         },
         {
           id: 2,
@@ -48,13 +52,13 @@ export default {
           id: 3,
           title: "Html",
           text: "Learn html",
-          completed: false
+          completed: true
         },
         {
           id: 4,
-          title: "scss",
+          title: "Scss",
           text: "Learn scss",
-          completed: false
+          completed: true
         },
         {
           id: 5,
@@ -86,6 +90,9 @@ export default {
     },
     deleteItem(index) {
       this.tasks.splice(index, 1);
+    },
+    checkItem(index) {
+      this.tasks[index].completed = !this.tasks[index].completed;
     }
   }
 };
