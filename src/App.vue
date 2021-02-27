@@ -13,7 +13,7 @@
       <button class="main-btn" @click="hidden = false">Add new todo</button>
     </div>
 
-    <AddNewTodo :hidden="hidden" @closeModal="closeModal" />
+    <AddNewTodo :hidden="hidden" @closeModal="closeModal" @addTask="addTask" />
 
     <TodoList
       :filteredTasks="filteredTasks"
@@ -67,6 +67,12 @@ export default {
           completed: false
         },
         {
+          id: 5,
+          title: "Ham",
+          text: "Learn Vuex",
+          completed: false
+        },
+        {
           id: 6,
           title: "React",
           text: "Learn react",
@@ -88,11 +94,15 @@ export default {
     closeModal() {
       return (this.hidden = true);
     },
+    addTask(newTask) {
+      return this.tasks.push(newTask);
+    },
     deleteItem(index) {
       this.tasks.splice(index, 1);
     },
     checkItem(index) {
-      this.tasks[index].completed = !this.tasks[index].completed;
+      this.$set(this.tasks[index], "completed", !this.tasks[index].completed);
+      // this.tasks[index].completed = !this.tasks[index].completed;
     }
   }
 };

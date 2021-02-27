@@ -102,7 +102,6 @@ input {
       transition: color 0.1s ease-in;
     }
     &.item-title::before {
-      // width: 0;
       transition: width 0.1s ease-in;
     }
 
@@ -125,6 +124,11 @@ input {
     height: 20px;
     border: 2px solid #41b883;
     visibility: visible;
+  }
+  &:hover {
+    &::before {
+      box-shadow: 0 0 10px 0 #41b883;
+    }
   }
 }
 

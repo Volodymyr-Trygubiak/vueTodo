@@ -1,18 +1,22 @@
 <template>
-  <div class="modal-overlay" :class="hidden ? 'close' : ''">
+  <div
+    class="modal-overlay"
+    @click.self="closeModal"
+    :class="hidden ? 'close' : ''"
+  >
     <div class="modal-container">
       <h1 class="title">ToDo list</h1>
-      <form>
+      <form @submit.prevent>
         <h4 class="title-inp">Title</h4>
-        <input class="main-inp" type="text" />
+        <input class="main-inp" type="text" v-model="newTask.title" />
         <h4 class="title-inp">Comment</h4>
-        <textarea class="main-inp area" type="text" />
+        <textarea class="main-inp area" type="text" v-model="newTask.text" />
 
         <div class="btns">
-          <button type="submit" class="main-btn">Create</button>
-          <button class="main-btn cancel" @click.prevent="closeModal">
-            Close
+          <button type="submit" class="main-btn" @click="addTask">
+            Create
           </button>
+          <button class="main-btn cancel" @click="closeModal">Close</button>
         </div>
       </form>
     </div>
@@ -35,7 +39,15 @@ export default {
   },
   methods: {
     closeModal() {
+      this.newTask.title = "";
+      this.newTask.text = "";
       this.$emit("closeModal", this.close);
+    },
+    addTask() {
+      this.$emit("addTask", { ...this.newTask });
+      this.$emit("closeModal", this.close);
+      this.newTask.title = "";
+      this.newTask.text = "";
     }
   }
 };
