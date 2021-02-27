@@ -9,7 +9,6 @@
   outline: none;
 }
 body {
-  // background-image: url(../4k-ultra-hd-background-nebula-sparkles-shine-dark-abstractio.jpg);
   background-color: rgb(17, 17, 17);
   color: #fff;
 }
@@ -65,4 +64,29 @@ textarea {
       background-color: #0e5334;
     }
   }
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+.modal-container {
+  width: 600px;
+  margin: 0 auto;
+  padding: 15px;
+  box-shadow: 0 0 10px 1px #41b883;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: rgb(17, 17, 17);
+  background-image: url(../4k-ultra-hd-background-nebula-sparkles-shine-dark-abstractio.jpg);
+}
+
+.close {
+  display: none;
 }

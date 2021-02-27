@@ -13,12 +13,23 @@
       <button class="main-btn" @click="hidden = false">Add new todo</button>
     </div>
 
-    <AddNewTodo :hidden="hidden" @closeModal="closeModal" @addTask="addTask" />
+    <AddNewTodo
+      :tasks="tasks"
+      :hidden="hidden"
+      @closeModal="closeModal"
+      @checkForm="checkForm"
+    />
 
     <TodoList
       :filteredTasks="filteredTasks"
-      @deleteItem="deleteItem"
+      @openDeleteModal="openDeleteModal"
       @checkItem="checkItem"
+    />
+    <DeleteListItem
+      :tasks="tasks"
+      :hiddenDelete="hiddenDelete"
+      @closeDeleteModal="closeDeleteModal"
+      @deleteItem="deleteItem"
     />
   </div>
 </template>
@@ -26,13 +37,17 @@
 <script>
 import AddNewTodo from "./components/AddNewTodo";
 import TodoList from "./components/TodoList";
+import DeleteListItem from "./components/DeteleListItem";
 
+import CloseModal from "./mixins/closeModal";
 export default {
   name: "App",
   components: {
     AddNewTodo,
-    TodoList
+    TodoList,
+    DeleteListItem
   },
+  mixins: [CloseModal],
   data() {
     return {
       tasks: [
@@ -40,47 +55,48 @@ export default {
           id: 1,
           title: "Vue",
           text: "Learn vue",
-          completed: true
+          completed: true,
         },
         {
           id: 2,
           title: "Angular",
           text: "Learn Angular",
-          completed: false
+          completed: false,
         },
         {
           id: 3,
           title: "Html",
           text: "Learn html",
-          completed: true
+          completed: true,
         },
         {
           id: 4,
           title: "Scss",
           text: "Learn scss",
-          completed: true
+          completed: true,
         },
         {
           id: 5,
           title: "Vuex",
           text: "Learn Vuex",
-          completed: false
+          completed: false,
         },
         {
           id: 5,
           title: "Ham",
           text: "Learn Vuex",
-          completed: false
+          completed: false,
         },
         {
           id: 6,
           title: "React",
           text: "Learn react",
-          completed: false
-        }
+          completed: false,
+        },
       ],
       searchText: "",
-      hidden: true
+      hidden: true,
+      hiddenDelete: true
     };
   },
   computed: {
@@ -94,15 +110,21 @@ export default {
     closeModal() {
       return (this.hidden = true);
     },
-    addTask(newTask) {
+    checkForm(newTask) {
       return this.tasks.push(newTask);
+    },
+    openDeleteModal() {
+      return (this.hiddenDelete = false);
+    },
+    closeDeleteModal() {
+      return (this.hiddenDelete = true);
     },
     deleteItem(index) {
       this.tasks.splice(index, 1);
     },
     checkItem(index) {
-      this.$set(this.tasks[index], "completed", !this.tasks[index].completed);
-      // this.tasks[index].completed = !this.tasks[index].completed;
+      // this.$set(this.tasks[index], "completed", !this.tasks[index].completed);
+      this.tasks[index].completed = !this.tasks[index].completed;
     }
   }
 };

@@ -15,7 +15,10 @@
           </h4>
           <p class="item-info">{{ task.text }}</p>
         </div>
-        <button class="main-btn cancel item-btn" @click="deleteItem(index)">
+        <button
+          class="main-btn cancel item-btn"
+          @click="openDeleteModal(index)"
+        >
           Delete
         </button>
       </li>
@@ -27,12 +30,13 @@
 <script>
 export default {
   name: "TodoList",
-  props: ["filteredTasks"],
+  props: ["tasks", "filteredTasks"],
   methods: {
-    deleteItem(index) {
-      this.$emit("deleteItem", index);
+    openDeleteModal(index) {
+      this.$emit("openDeleteModal", index);
     },
     checkItem(index) {
+      console.log(index);
       this.$emit("checkItem", index);
     }
   }
