@@ -1,0 +1,46 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Vue",
+      "text": "Learn vue",
+      "completed": true
+    },
+    {
+      "id": 2,
+      "title": "Angular",
+      "text": "Learn Angular",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "title": "Html",
+      "text": "Learn html",
+      "completed": true
+    },
+    {
+      "id": 4,
+      "title": "Scss",
+      "text": "Learn scss",
+      "completed": true
+    },
+    {
+      "id": 5,
+      "title": "Vuex",
+      "text": "Learn Vuex",
+      "completed": false
+    },
+    {
+      "id": 5,
+      "title": "Ham",
+      "text": "Learn Vuex",
+      "completed": false
+    },
+    {
+      "id": 6,
+      "title": "React",
+      "text": "Learn react",
+      "completed": false
+    }
+  ]
+}
