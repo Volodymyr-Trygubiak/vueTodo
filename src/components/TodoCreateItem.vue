@@ -27,8 +27,6 @@
       <textarea class="main-inp area" type="text" v-model="newTask.text" />
 
       <div class="btn-groupe">
-        <!-- <button class="btn" type="submit">Create</button>
-          <button class="btn cancel" @click.prevent="closeModal">Close</button> -->
         <TodoButton type="submit" :title="'Create'" />
         <TodoButton :title="'Close'" :cancel="true" @click="closeCreateModal" />
       </div>
@@ -102,8 +100,7 @@ export default {
 
     closeCreateModal() {
       this.$emit("close-create-modal", this.close);
-      this.newTask.title = "";
-      this.newTask.text = "";
+
       this.$v.$reset();
     }
   }
