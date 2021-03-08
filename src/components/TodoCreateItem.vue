@@ -9,7 +9,6 @@
         v-model="newTask.title"
         :class="$v.newTask.title.$error ? 'invalid' : ''"
       />
-      <p>{{ newTask.title }}</p>
       <p
         class="error"
         v-if="$v.newTask.title.$dirty && !$v.newTask.title.required"
