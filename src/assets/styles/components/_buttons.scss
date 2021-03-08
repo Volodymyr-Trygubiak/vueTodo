@@ -1,0 +1,28 @@
+.btn {
+  font-size: 20px;
+  background-color: $base;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  user-select: none;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 10px 0 $base;
+    transition: box-shadow .1s ease-in;
+
+  }
+
+  &:active {
+    background-color: darken($base, 5%);
+  }
+  &.cancel {
+    background-color: #11613d;
+    &:hover {
+      box-shadow: 0 0 10px 0 #11613d;
+    }
+    &:active {
+      background-color: #0e5334;
+    }
+  }
+}

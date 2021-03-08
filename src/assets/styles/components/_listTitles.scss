@@ -1,0 +1,41 @@
+.item-title,
+.title-empty {
+    display: inline-block;
+    font-size: 24px;
+    position: relative;
+    margin-bottom: 10px;
+    white-space: normal;
+    &::after,
+    &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        background-color: #ff006a;
+    }
+    &::before {
+        width: 100%;
+    }
+    &::after {
+        width: 0;
+        background-color: #41b883;
+        transition: width 0.1s ease-out;
+    }
+    .index {
+        color: #ff006a;
+    }
+    &.done {
+        .index {
+            color: #41b883;
+            transition: color 0.1s ease-in;
+        }
+        &.item-title::before {
+            transition: width 0.1s ease-in;
+        }
+        &.item-title::after {
+            width: 100%;
+            transition: width 0.1s ease-in;
+        }
+    }
+}

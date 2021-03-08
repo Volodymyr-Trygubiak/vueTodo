@@ -1,0 +1,21 @@
+input[type="text"],
+textarea {
+  width: 100%;
+  font-size: 20px;
+  display: block;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: inherit;
+  color: #fff;
+  border: 2px solid $base;
+  resize: none;
+
+  &:hover {
+    box-shadow: 0 0 5px 0 $base;
+  }
+
+  &:focus {
+    border-color: $base;
+    box-shadow: 0 0 10px 0 $base;
+  }
+}

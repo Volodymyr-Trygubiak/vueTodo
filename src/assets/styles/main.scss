@@ -1,92 +1,11 @@
-@import "./variables";
+@import "./abstracts/variables";
 
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-*:focus {
-  outline: none;
-}
-body {
-  background-color: rgb(17, 17, 17);
-  color: #fff;
-}
-ul {
-  list-style: none;
-}
+@import "./base/base";
 
-input[type="text"],
-textarea {
-  width: 100%;
-  font-size: 20px;
-  display: block;
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: inherit;
-  color: #fff;
-  border: 2px solid $base;
-  resize: none;
+@import "./layout/forms";
 
-  &:hover {
-    box-shadow: 0 0 5px 0 $base;
-  }
-
-  &:focus {
-    border-color: $base;
-    box-shadow: 0 0 10px 0 $base;
-  }
-}
-
-.main-btn {
-  font-size: 20px;
-  background-color: $base;
-  color: #fff;
-  border: none;
-  padding: 12px 30px;
-  cursor: pointer;
-
-  &:hover {
-    box-shadow: 0 0 10px 0 $base;
-    transition: box-shadow .1s ease-in;
-
-  }
-
-  &:active {
-    background-color: darken($base, 5%);
-  }
-  &.cancel {
-    background-color: #11613d;
-    &:hover {
-      box-shadow: 0 0 10px 0 #11613d;
-    }
-    &:active {
-      background-color: #0e5334;
-    }
-  }
-}
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 100;
-}
-.modal-container {
-  width: 600px;
-  margin: 0 auto;
-  padding: 15px;
-  box-shadow: 0 0 10px 1px #41b883;
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%);
-  background-color: rgb(17, 17, 17);
-  background-image: url(../4k-ultra-hd-background-nebula-sparkles-shine-dark-abstractio.jpg);
-}
-
-.close {
-  display: none;
-}
+@import "./components/buttons";
+@import "./components/checkboxes";
+@import "./components/inputs";
+@import "./components/listTitles";
+@import "./components/modal";
