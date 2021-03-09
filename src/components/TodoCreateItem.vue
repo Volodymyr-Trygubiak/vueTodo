@@ -1,7 +1,7 @@
 <template>
   <TodoModal :class="{ close: hidden }" @close-modal="closeCreateModal">
     <h1 class="title">ToDo list</h1>
-    <form @submit.prevent="checkForm">
+    <form @submit.prevent>
       <h4 class="title-inp">Title</h4>
       <input
         class="main-inp"
@@ -26,7 +26,7 @@
       <textarea class="main-inp area" type="text" v-model="newTask.text" />
 
       <div class="btn-groupe">
-        <TodoButton type="submit" :title="'Create'" />
+        <TodoButton type="submit" :title="'Create'" @click="checkForm" />
         <TodoButton :title="'Close'" :cancel="true" @click="closeCreateModal" />
       </div>
     </form>
@@ -98,8 +98,9 @@ export default {
     },
 
     closeCreateModal() {
+      this.newTask.title = "";
+      this.newTask.text = "";
       this.$emit("close-create-modal", this.close);
-
       this.$v.$reset();
     }
   }
