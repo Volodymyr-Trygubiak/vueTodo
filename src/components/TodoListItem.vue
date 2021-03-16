@@ -1,28 +1,26 @@
 <template>
-  <div>
-    <li class="list-item" v-for="(task, index) in filteredTasks" :key="index">
-      <input
-        class="checkbox"
-        type="checkbox"
-        :class="task.completed ? 'checked' : ''"
-        @click="checkItem(index)"
-      />
-      <div class="text-group">
-        <h4 class="item-title" :class="task.completed ? 'done' : ''">
-          <span class="index">{{ `${index + 1}.` }}</span>
-          {{ task.title }}
-        </h4>
-        <p class="item-info">{{ task.text }}</p>
-      </div>
+  <li class="list-item">
+    <input
+      class="checkbox"
+      type="checkbox"
+      :class="task.completed ? 'checked' : ''"
+      @click="checkItem"
+    />
+    <div class="text-group">
+      <h4 class="item-title" :class="task.completed ? 'done' : ''">
+        <span class="index">{{ `${index + 1}.` }}</span>
+        {{ task.title }}
+      </h4>
+      <p class="item-info">{{ task.text }}</p>
+    </div>
 
-      <TodoButton
-        class="item-btn"
-        :title="'Delete'"
-        :cancel="true"
-        @click="openDeleteModal(index)"
-      />
-    </li>
-  </div>
+    <TodoButton
+      class="item-btn"
+      :title="'Delete'"
+      :cancel="true"
+      @click="openDeleteModal(index)"
+    />
+  </li>
 </template>
 
 <script>
@@ -36,23 +34,23 @@ export default {
   },
 
   props: {
-    filteredTasks: {
-      type: Array,
+    task: {
+      type: Object,
       default() {
-        return [];
+        return {};
       }
+    },
+    index: {
+      type: Number
     }
   },
 
   methods: {
-    openDeleteModal(index) {
-      this.$emit("open-delete-modal", index);
+    openDeleteModal() {
+      this.$emit("open-delete-modal", this.task);
     },
-    checkItem(index) {
-      this.$emit("check-item", index);
-    },
-    ond(index) {
-      console.log(index);
+    checkItem() {
+      this.$emit("check-item", this.index);
     }
   }
 };

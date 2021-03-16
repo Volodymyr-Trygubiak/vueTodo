@@ -21,25 +21,12 @@
   text-align: left;
 }
 
-input {
-  &.invalid {
-    border-color: #ff006a;
-    &:hover {
-      box-shadow: 0 0 5px 0 #ff006a;
-    }
-
-    &:focus {
-      border-color: #ff006a;
-      box-shadow: 0 0 10px 0 #ff006a;
-    }
-  }
-}
-
-.error {
+.error-text {
   font-size: 14px;
   color: #ff006a;
   text-align: left;
   margin-left: 10px;
+  transition: all 1s ease-in;
 }
 
 .main-inp {

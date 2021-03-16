@@ -61,9 +61,9 @@ export default {
   data() {
     return {
       searchText: "",
-      taskIndex: 0,
       hidden: true,
-      hiddenDelete: true
+      hiddenDelete: true,
+      taskIndex: null
     };
   },
 
@@ -99,9 +99,9 @@ export default {
       return this.tasks.push(newTask);
     },
 
-    openDeleteModal(index) {
-      this.taskIndex = index;
-      console.log(index);
+    openDeleteModal(task) {
+      this.taskIndex = task.id;
+      console.log(task.id);
       return (this.hiddenDelete = false);
     },
 

@@ -1,8 +1,11 @@
 <template>
   <div class="todo-list">
-    <ul class="list" v-if="filteredTasks.length > 0">
+    <ul class="list" v-if="filteredTasks.length">
       <TodoListItem
-        :filteredTasks="filteredTasks"
+        v-for="(task, index) in filteredTasks"
+        :key="index"
+        :index="index"
+        :task="task"
         @open-delete-modal="openDeleteModal"
         @check-item="checkItem"
       />
@@ -21,11 +24,18 @@ export default {
     TodoListItem
   },
 
-  props: ["filteredTasks"],
+  props: {
+    filteredTasks: {
+      type: Array,
+      default() {
+        return [];
+      }
+    }
+  },
 
   methods: {
-    openDeleteModal(index) {
-      this.$emit("open-delete-modal", index);
+    openDeleteModal(task) {
+      this.$emit("open-delete-modal", task);
     },
     checkItem(index) {
       this.$emit("check-item", index);

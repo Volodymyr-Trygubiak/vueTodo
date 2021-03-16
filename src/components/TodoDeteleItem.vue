@@ -1,7 +1,7 @@
 <template>
   <TodoModal :class="{ close: hiddenDelete }" @close-modal="closeDeleteModal">
     <h4 class="title">Do you want delete?</h4>
-    <h5 class="item-title" v-if="filteredTasks.length">
+    <h5 class="item-title" v-if="hiddenDelete">
       {{ filteredTasks[taskIndex].title }}
     </h5>
 
@@ -36,7 +36,7 @@ export default {
     },
     taskIndex: {
       type: Number,
-      default: -1
+      default: null
     }
   },
 

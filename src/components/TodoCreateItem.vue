@@ -10,13 +10,13 @@
         :class="$v.newTask.title.$error ? 'invalid' : ''"
       />
       <p
-        class="error"
+        class="error-text"
         v-if="$v.newTask.title.$dirty && !$v.newTask.title.required"
       >
         *Required field
       </p>
       <p
-        class="error"
+        class="error-text"
         v-if="$v.newTask.title.$dirty && !$v.newTask.title.minLength"
       >
         *Length must be more 3 letters
@@ -39,6 +39,7 @@ import TodoModal from "./shared/TodoModal";
 
 import { validationMixin } from "vuelidate";
 import { required, minLength } from "vuelidate/lib/validators";
+import { mapActions } from "vuex";
 
 export default {
   name: "TodoCreateItem",
@@ -79,6 +80,8 @@ export default {
   },
 
   methods: {
+    ...mapActions(["ADD_TASK_TO_API"]),
+
     checkForm() {
       this.$v.newTask.$touch();
       if (!this.$v.newTask.$error) {
@@ -87,10 +90,9 @@ export default {
         } else {
           this.newTask.id = 0;
         }
-
-        this.$emit("check-form", { ...this.newTask });
+        this.ADD_TASK_TO_API(this.newTask);
+        // this.$emit("check-form", { ...this.newTask });
         this.$emit("close-create-modal", this.close);
-        console.log(this.tasks.map(item => item.id));
         this.newTask.title = "";
         this.newTask.text = "";
         this.$v.$reset();

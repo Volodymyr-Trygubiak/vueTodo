@@ -18,4 +18,17 @@ textarea {
     border-color: $base;
     box-shadow: 0 0 10px 0 $base;
   }
+
+  &.invalid {
+    border-color: #ff006a;
+    &:hover {
+      box-shadow: 0 0 5px 0 #ff006a;
+    }
+
+    &:focus {
+      border-color: #ff006a;
+      box-shadow: 0 0 10px 0 #ff006a;
+    }
+  }
+
 }
