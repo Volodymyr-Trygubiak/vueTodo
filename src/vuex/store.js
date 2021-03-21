@@ -10,11 +10,26 @@ let store = new Vuex.Store({
   state: {
     tasks: []
   },
+
+  mutations: {
+    SET_TASKS_TO_STATE: (state, data) => {
+      state.tasks = data;
+    },
+    SET_NEW_TASKS_TO_STATE: (state, tasks) => {
+      state.tasks.push(tasks);
+    }
+  },
+
+  getters: {
+    TASKS(state) {
+      return state.tasks;
+    }
+  },
+
   actions: {
     GET_TASKS_FROM_API({ commit }) {
-      return axios(tasksUrl, {
-        method: "GET"
-      })
+      axios
+        .get(tasksUrl)
         .then(tasks => {
           commit("SET_TASKS_TO_STATE", tasks.data);
           return tasks;
@@ -26,7 +41,7 @@ let store = new Vuex.Store({
     },
     POST_TASK_TO_API({ commit }, task) {
       axios
-        .post(tasksUrl, task)
+        .put(tasksUrl, task)
         .then(response => {
           commit("SET_TASKS_TO_STATE", response.data);
         })
@@ -34,30 +49,6 @@ let store = new Vuex.Store({
           console.log(error);
           return error;
         });
-    },
-    // FILTER_TASK({ commit }, task) {
-    //   axios
-    //     .put(tasksUrl, task)
-    //     .then(response => {
-    //       commit("SET_TASKS_TO_STATE", response.data);
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //       return error;
-    //     });
-    // }
-  },
-  mutations: {
-    SET_TASKS_TO_STATE: (state, tasks) => {
-      state.tasks = tasks;
-    },
-    SET_NEW_TASKS_TO_STATE: (state, tasks) => {
-      state.tasks.push(tasks);
-    }
-  },
-  getters: {
-    TASKS(state) {
-      return state.tasks;
     }
   }
 });

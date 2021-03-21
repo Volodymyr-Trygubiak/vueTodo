@@ -3,7 +3,7 @@
     <ul class="list" v-if="filteredTasks.length">
       <TodoListItem
         v-for="(task, index) in filteredTasks"
-        :key="index"
+        :key="task.id"
         :index="index"
         :task="task"
         @open-delete-modal="openDeleteModal"

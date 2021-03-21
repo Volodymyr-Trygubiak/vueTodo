@@ -1,8 +1,8 @@
 <template>
   <TodoModal :class="{ close: hiddenDelete }" @close-modal="closeDeleteModal">
     <h4 class="title">Do you want delete?</h4>
-    <h5 class="item-title" v-if="hiddenDelete">
-      {{ filteredTasks[taskIndex].title }}
+    <h5 class="item-title" v-if="!hiddenDelete">
+      {{ taskItem.title }}
     </h5>
 
     <div class="btn-groupe">
@@ -28,15 +28,10 @@ export default {
     hiddenDelete: {
       type: Boolean
     },
-    filteredTasks: {
-      type: Array,
-      default() {
-        return [];
-      }
-    },
-    taskIndex: {
-      type: Number,
-      default: null
+
+    taskItem: {
+      type: Object,
+      default: () => {}
     }
   },
 
@@ -45,8 +40,8 @@ export default {
       this.$emit("close-delete-modal", this.close);
     },
 
-    deleteItem(taskIndex) {
-      this.$emit("delete-item", taskIndex);
+    deleteItem() {
+      this.$emit("delete-item", this.taskItem.id);
       this.$emit("close-delete-modal");
     }
   }

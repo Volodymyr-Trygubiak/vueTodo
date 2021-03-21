@@ -80,7 +80,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["ADD_TASK_TO_API"]),
+    ...mapActions(["POST_TASK_TO_API"]),
 
     checkForm() {
       this.$v.newTask.$touch();
@@ -90,8 +90,8 @@ export default {
         } else {
           this.newTask.id = 0;
         }
-        this.ADD_TASK_TO_API(this.newTask);
-        // this.$emit("check-form", { ...this.newTask });
+        console.log(this.tasks);
+        this.POST_TASK_TO_API(this.newTask);
         this.$emit("close-create-modal", this.close);
         this.newTask.title = "";
         this.newTask.text = "";

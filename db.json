@@ -31,15 +31,21 @@
       "completed": false
     },
     {
-      "id": 5,
+      "id": 6,
+      "title": "React",
+      "text": "Learn react",
+      "completed": false
+    },
+    {
+      "id": 7,
       "title": "Ham",
       "text": "Learn Vuex",
       "completed": false
     },
     {
-      "id": 6,
-      "title": "React",
-      "text": "Learn react",
+      "id": 8,
+      "title": "xfgdfhg",
+      "text": "hxdgfhg",
       "completed": false
     }
   ]

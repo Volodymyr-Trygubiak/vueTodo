@@ -19,7 +19,6 @@
         :tasks="tasks"
         :hidden="hidden"
         @close-create-modal="closeCreateModal"
-        @check-form="checkForm"
       />
 
       <TodoList
@@ -29,11 +28,10 @@
       />
 
       <TodoDeteleItem
-        :filtered-tasks="filteredTasks"
-        :task-index="taskIndex"
+        :task-item="taskItem"
         :hidden-delete="hiddenDelete"
         @close-delete-modal="closeDeleteModal"
-        @delete-item="deleteItem(taskIndex)"
+        @delete-item="deleteItem"
       />
     </div>
   </div>
@@ -63,7 +61,7 @@ export default {
       searchText: "",
       hidden: true,
       hiddenDelete: true,
-      taskIndex: null
+      taskItem: null
     };
   },
 
@@ -73,6 +71,7 @@ export default {
     }),
 
     filteredTasks() {
+      console.log(this.tasks);
       return this.tasks.filter(task =>
         task.title.toLowerCase().includes(this.searchText.toLowerCase())
       );
@@ -87,6 +86,7 @@ export default {
     ...mapActions(["GET_TASKS_FROM_API"]),
 
     openCreateModal() {
+      console.log(23);
       this.hidden = false;
       this.searchText = "";
     },
@@ -95,13 +95,8 @@ export default {
       return (this.hidden = true);
     },
 
-    checkForm(newTask) {
-      return this.tasks.push(newTask);
-    },
-
     openDeleteModal(task) {
-      this.taskIndex = task.id;
-      console.log(task.id);
+      this.taskItem = task;
       return (this.hiddenDelete = false);
     },
 
@@ -109,9 +104,9 @@ export default {
       return (this.hiddenDelete = true);
     },
 
-    deleteItem(index) {
+    deleteItem(id) {
       this.taskIndex = 0;
-      this.tasks.splice(index, 1);
+      this.tasks.filter(task => task === id);
     },
 
     checkItem(index) {
