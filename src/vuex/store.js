@@ -41,9 +41,9 @@ let store = new Vuex.Store({
     },
     POST_TASK_TO_API({ commit }, task) {
       axios
-        .put(tasksUrl, task)
+        .post(tasksUrl, task)
         .then(response => {
-          commit("SET_TASKS_TO_STATE", response.data);
+          commit("SET_NEW_TASKS_TO_STATE", response.data);
         })
         .catch(error => {
           console.log(error);

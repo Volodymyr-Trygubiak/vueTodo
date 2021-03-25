@@ -67,6 +67,10 @@ export default {
   background-image: url(../assets/4k-ultra-hd-background-nebula-sparkles-shine-dark-abstractio.jpg);
 }
 
+.checkbox {
+  margin-left: 8px;
+}
+
 .text-group {
   margin-left: 10px;
   width: 100%;
