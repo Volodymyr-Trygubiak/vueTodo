@@ -3,7 +3,8 @@
     <input
       class="checkbox"
       type="checkbox"
-      :class="task.completed ? 'checked' : ''"
+      v-model="taskItem.completed"
+      :class="{ checked: task.completed }"
       @click="checkItem"
     />
     <div class="text-group">
@@ -26,6 +27,8 @@
 <script>
 import TodoButton from "./shared/TodoButton";
 
+import { mapActions } from "vuex";
+
 export default {
   name: "TodoListItem",
 
@@ -45,12 +48,25 @@ export default {
     }
   },
 
+  data() {
+    return {
+      taskItem: {
+        id: this.task.id,
+        title: this.task.title,
+        text: this.task.text,
+        completed: !this.task.completed
+      }
+    };
+  },
+
   methods: {
+    ...mapActions(["checkTask"]),
+
     openDeleteModal() {
       this.$emit("open-delete-modal", this.task);
     },
     checkItem() {
-      this.$emit("check-item", this.index);
+      this.checkTask(this.taskItem);
     }
   }
 };

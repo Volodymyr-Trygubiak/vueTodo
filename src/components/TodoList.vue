@@ -7,7 +7,6 @@
         :index="index"
         :task="task"
         @open-delete-modal="openDeleteModal"
-        @check-item="checkItem"
       />
     </ul>
     <h4 class="title-empty" v-else>Todo list is empty</h4>
@@ -36,9 +35,6 @@ export default {
   methods: {
     openDeleteModal(task) {
       this.$emit("open-delete-modal", task);
-    },
-    checkItem(index) {
-      this.$emit("check-item", index);
     }
   }
 };

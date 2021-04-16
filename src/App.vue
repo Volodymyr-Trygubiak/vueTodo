@@ -15,16 +15,11 @@
         <TodoButton :title="'Add new todo'" @click="openCreateModal" />
       </div>
 
-      <TodoCreateItem
-        :tasks="tasks"
-        :hidden="hidden"
-        @close-create-modal="closeCreateModal"
-      />
+      <TodoCreateItem :hidden="hidden" @close-create-modal="closeCreateModal" />
 
       <TodoList
         :filtered-tasks="filteredTasks"
         @open-delete-modal="openDeleteModal"
-        @check-item="checkItem"
       />
 
       <TodoDeteleItem
@@ -71,7 +66,6 @@ export default {
     }),
 
     filteredTasks() {
-      console.log(this.tasks);
       return this.tasks.filter(task =>
         task.title.toLowerCase().includes(this.searchText.toLowerCase())
       );
@@ -83,10 +77,9 @@ export default {
   },
 
   methods: {
-    ...mapActions(["GET_TASKS_FROM_API"]),
+    ...mapActions(["GET_TASKS_FROM_API", "removeTask"]),
 
     openCreateModal() {
-      console.log(23);
       this.hidden = false;
       this.searchText = "";
     },
@@ -106,12 +99,7 @@ export default {
 
     deleteItem(id) {
       this.taskIndex = 0;
-      this.tasks.filter(task => task === id);
-    },
-
-    checkItem(index) {
-      this.filteredTasks[index].completed = !this.filteredTasks[index]
-        .completed;
+      this.removeTask(id);
     }
   }
 };

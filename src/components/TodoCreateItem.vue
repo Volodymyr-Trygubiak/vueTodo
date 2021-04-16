@@ -1,6 +1,6 @@
 <template>
   <TodoModal :class="{ close: hidden }" @close-modal="closeCreateModal">
-    <h1 class="title">ToDo list</h1>
+    <h1 class="title">Create Item</h1>
     <form @submit.prevent>
       <h4 class="title-inp">Title</h4>
       <input
@@ -53,10 +53,6 @@ export default {
     hidden: {
       type: Boolean,
       default: true
-    },
-    tasks: {
-      type: Array,
-      defaulet: []
     }
   },
 
@@ -85,12 +81,6 @@ export default {
     checkForm() {
       this.$v.newTask.$touch();
       if (!this.$v.newTask.$error) {
-        if (this.tasks.length) {
-          this.newTask.id = Math.max(...this.tasks.map(item => item.id)) + 1;
-        } else {
-          this.newTask.id = 0;
-        }
-        console.log(this.tasks);
         this.POST_TASK_TO_API(this.newTask);
         this.$emit("close-create-modal", this.close);
         this.newTask.title = "";
